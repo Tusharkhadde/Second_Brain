@@ -1,4 +1,5 @@
 import { Brain, Plus, Share2, LogOut, Sparkles } from "lucide-react";
+import { Logo } from "@/components/Logo";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
@@ -31,20 +32,20 @@ export function Navbar({ onAddContent, onShare, username }: NavbarProps) {
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
                     {/* Logo */}
                     <div className="flex items-center gap-2.5 cursor-pointer" onClick={() => navigate("/dashboard")}>
-                        <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-violet-500 to-purple-700 flex items-center justify-center shadow-lg shadow-violet-900/40">
-                            <Brain className="w-4.5 h-4.5 text-white" size={16} />
+                        <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-emerald-500 to-teal-700 flex items-center justify-center shadow-lg shadow-emerald-900/40">
+                            <Logo className="w-4.5 h-4.5 text-white" />
                         </div>
                         <span className="font-bold text-lg gradient-text tracking-tight">
                             Second Brain
                         </span>
-                        <span className="badge-violet hidden sm:inline">Beta</span>
+                        <span className="badge-emerald hidden sm:inline">Beta</span>
                     </div>
 
                     {/* Actions */}
                     <div className="flex items-center gap-2">
                         {username && (
                             <span className="hidden md:flex items-center gap-2 text-sm text-white/50 mr-2">
-                                <Sparkles className="w-3.5 h-3.5 text-violet-400" />
+                                <Sparkles className="w-3.5 h-3.5 text-emerald-400" />
                                 {username}
                             </span>
                         )}

@@ -7,6 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { authApi } from "@/lib/api";
 import { Brain, Loader2, Sparkles, ArrowRight } from "lucide-react";
+import { Logo } from "@/components/Logo";
 
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 
@@ -23,12 +24,17 @@ export function SigninPage() {
         setLoading(true);
         setError("");
         try {
-            const res = await authApi.signin(username, password);
-            localStorage.setItem("token", res.data.token);
-            localStorage.setItem("username", username);
-            navigate("/dashboard");
-        } catch {
-            setError("Invalid username or password.");
+            const data = await authApi.signin(username, password);
+            if (data.token) {
+                localStorage.setItem("token", data.token);
+                localStorage.setItem("username", username);
+                navigate("/dashboard");
+            } else {
+                setError("Login failed. No token received.");
+            }
+        } catch (err: any) {
+            const errorMsg = err.response?.data?.message || err.message || "Invalid username or password.";
+            setError(errorMsg);
         } finally {
             setLoading(false);
         }
@@ -37,8 +43,8 @@ export function SigninPage() {
     return (
         <ShaderBackground className="flex items-center justify-center min-h-screen px-4">
             {/* Decorative orbs */}
-            <div className="fixed top-1/4 left-1/4 w-96 h-96 bg-violet-600/15 rounded-full blur-[120px] pointer-events-none" />
-            <div className="fixed bottom-1/4 right-1/4 w-80 h-80 bg-purple-700/10 rounded-full blur-[100px] pointer-events-none" />
+            <div className="fixed top-1/4 left-1/4 w-96 h-96 bg-emerald-600/15 rounded-full blur-[120px] pointer-events-none" />
+            <div className="fixed bottom-1/4 right-1/4 w-80 h-80 bg-teal-700/10 rounded-full blur-[100px] pointer-events-none" />
 
             <motion.div
                 initial={{ opacity: 0, y: 30, scale: 0.97 }}
@@ -47,15 +53,15 @@ export function SigninPage() {
                 className="w-full max-w-md"
             >
                 {/* Card */}
-                <Card className="glass-strong rounded-3xl border border-white/10 glow-violet-sm bg-transparent">
+                <Card className="glass-strong rounded-3xl border border-white/10 glow-emerald-sm bg-transparent">
                     {/* Header */}
                     <CardHeader className="flex flex-col items-center pb-2">
                         <motion.div
                             animate={{ rotate: [0, 5, -5, 0] }}
                             transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                            className="w-14 h-14 rounded-2xl bg-gradient-to-br from-violet-500 to-purple-700 flex items-center justify-center mb-4 shadow-xl shadow-violet-900/40 pulse-glow"
+                            className="w-14 h-14 rounded-2xl bg-gradient-to-br from-emerald-500 to-teal-700 flex items-center justify-center mb-4 shadow-xl shadow-emerald-900/40 pulse-glow"
                         >
-                            <Brain className="w-7 h-7 text-white" />
+                            <Logo className="w-7 h-7 text-white" />
                         </motion.div>
                         <CardTitle className="text-2xl font-bold gradient-text-white">Welcome back</CardTitle>
                         <CardDescription className="text-sm text-white/45 mt-1">Sign in to your Second Brain</CardDescription>
@@ -114,7 +120,7 @@ export function SigninPage() {
                         <div className="mt-2 text-center">
                             <p className="text-sm text-white/40">
                                 Don't have an account?{" "}
-                                <Link to="/signup" className="text-violet-400 hover:text-violet-300 font-medium transition-colors">
+                                <Link to="/signup" className="text-emerald-400 hover:text-emerald-300 font-medium transition-colors">
                                     Sign up free
                                 </Link>
                             </p>

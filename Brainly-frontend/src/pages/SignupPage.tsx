@@ -7,6 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { authApi } from "@/lib/api";
 import { Brain, Loader2, CheckCircle2, ArrowRight } from "lucide-react";
+import { Logo } from "@/components/Logo";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 
 const features = [
@@ -50,8 +51,8 @@ export function SignupPage() {
 
     return (
         <ShaderBackground className="flex items-center justify-center min-h-screen px-4">
-            <div className="fixed top-1/3 right-1/4 w-96 h-96 bg-purple-600/15 rounded-full blur-[120px] pointer-events-none" />
-            <div className="fixed bottom-1/3 left-1/4 w-80 h-80 bg-violet-700/10 rounded-full blur-[100px] pointer-events-none" />
+            <div className="fixed top-1/3 right-1/4 w-96 h-96 bg-teal-600/15 rounded-full blur-[120px] pointer-events-none" />
+            <div className="fixed bottom-1/3 left-1/4 w-80 h-80 bg-emerald-700/10 rounded-full blur-[100px] pointer-events-none" />
 
             <div className="w-full max-w-4xl grid md:grid-cols-2 gap-8 items-center">
                 {/* Left — branding */}
@@ -62,8 +63,8 @@ export function SignupPage() {
                     className="hidden md:block space-y-6"
                 >
                     <div className="flex items-center gap-3">
-                        <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-violet-500 to-purple-700 flex items-center justify-center pulse-glow shadow-xl shadow-violet-900/40">
-                            <Brain className="w-6 h-6 text-white" />
+                        <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-emerald-500 to-teal-700 flex items-center justify-center pulse-glow shadow-xl shadow-emerald-900/40">
+                            <Logo className="w-6 h-6 text-white" />
                         </div>
                         <span className="text-2xl font-bold gradient-text">Second Brain</span>
                     </div>
@@ -83,7 +84,7 @@ export function SignupPage() {
                                 transition={{ delay: 0.3 + i * 0.1 }}
                                 className="flex items-center gap-3 text-white/60"
                             >
-                                <CheckCircle2 className="w-4 h-4 text-violet-400 shrink-0" />
+                                <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
                                 <span className="text-sm">{f}</span>
                             </motion.div>
                         ))}
@@ -96,7 +97,7 @@ export function SignupPage() {
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     transition={{ duration: 0.5, delay: 0.1 }}
                 >
-                    <Card className="glass-strong rounded-3xl border border-white/10 glow-violet-sm bg-transparent">
+                    <Card className="glass-strong rounded-3xl border border-white/10 glow-emerald-sm bg-transparent">
                         <CardHeader className="mb-3">
                             <CardTitle className="text-2xl font-bold gradient-text-white">Create account</CardTitle>
                             <CardDescription className="text-sm text-white/40 mt-1">Start building your second brain today</CardDescription>
@@ -166,7 +167,7 @@ export function SignupPage() {
                         <CardFooter className="flex justify-center mt-2">
                             <p className="text-sm text-white/40">
                                 Already have an account?{" "}
-                                <Link to="/signin" className="text-violet-400 hover:text-violet-300 font-medium transition-colors">
+                                <Link to="/signin" className="text-emerald-400 hover:text-emerald-300 font-medium transition-colors">
                                     Sign in
                                 </Link>
                             </p>

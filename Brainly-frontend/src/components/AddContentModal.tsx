@@ -115,7 +115,7 @@ export function AddContentModal({ open, onClose, onAdded }: AddContentModalProps
                                         className={cn(
                                             "flex flex-col items-center gap-1.5 p-2.5 rounded-xl border text-xs font-medium transition-all duration-200 cursor-pointer",
                                             type === t.id
-                                                ? "bg-violet-600/25 border-violet-500/50 text-violet-300"
+                                                ? "bg-emerald-600/25 border-emerald-500/50 text-emerald-300"
                                                 : "bg-white/4 border-white/8 text-white/50 hover:bg-white/8 hover:text-white/70"
                                         )}
                                     >
@@ -153,7 +153,7 @@ export function AddContentModal({ open, onClose, onAdded }: AddContentModalProps
                     {/* Tags */}
                     <div className="space-y-1.5">
                         <Label htmlFor="tags" className="flex items-center gap-1.5">
-                            <Tag className="w-3.5 h-3.5 text-violet-400" />
+                            <Tag className="w-3.5 h-3.5 text-emerald-400" />
                             Tags
                             <span className="text-white/30 font-normal text-xs">(optional · press Enter or , to add)</span>
                         </Label>
@@ -164,7 +164,7 @@ export function AddContentModal({ open, onClose, onAdded }: AddContentModalProps
                             className={cn(
                                 "flex flex-wrap gap-1.5 min-h-[42px] px-3 py-2 rounded-xl",
                                 "bg-white/4 border border-white/10 cursor-text",
-                                "focus-within:border-violet-500/50 focus-within:bg-white/6 transition-colors"
+                                "focus-within:border-emerald-500/50 focus-within:bg-white/6 transition-colors"
                             )}
                         >
                             <AnimatePresence>
@@ -175,13 +175,13 @@ export function AddContentModal({ open, onClose, onAdded }: AddContentModalProps
                                         animate={{ opacity: 1, scale: 1 }}
                                         exit={{ opacity: 0, scale: 0.8 }}
                                         transition={{ duration: 0.15 }}
-                                        className="flex items-center gap-1 px-2 py-0.5 rounded-lg bg-violet-600/20 border border-violet-500/30 text-violet-300 text-xs font-medium"
+                                        className="flex items-center gap-1 px-2 py-0.5 rounded-lg bg-emerald-600/20 border border-emerald-500/30 text-emerald-300 text-xs font-medium"
                                     >
                                         #{tag}
                                         <button
                                             type="button"
                                             onClick={(e) => { e.stopPropagation(); removeTag(tag); }}
-                                            className="text-violet-400/60 hover:text-violet-300 transition-colors ml-0.5"
+                                            className="text-emerald-400/60 hover:text-emerald-300 transition-colors ml-0.5"
                                         >
                                             <X className="w-3 h-3" />
                                         </button>

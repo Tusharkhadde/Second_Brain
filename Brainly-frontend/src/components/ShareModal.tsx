@@ -119,7 +119,7 @@ export function ShareModal({ open, onClose }: ShareModalProps) {
                         >
                             <p className="text-xs font-medium text-white/50 uppercase tracking-wider">Share Link</p>
                             <div className="flex items-center gap-2 p-3 rounded-xl bg-white/4 border border-white/8">
-                                <Link2 className="w-3.5 h-3.5 text-violet-400 shrink-0" />
+                                <Link2 className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
                                 <span className="text-sm text-white/60 truncate flex-1">{shareUrl}</span>
                                 <Button
                                     variant="ghost"

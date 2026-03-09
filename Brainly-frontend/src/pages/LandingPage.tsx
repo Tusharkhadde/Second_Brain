@@ -67,9 +67,9 @@ const features = [
         icon: Link2,
         title: "Web Links",
         desc: "Bookmark any URL with rich previews and custom titles.",
-        color: "from-violet-500/20 to-violet-600/5",
-        border: "border-violet-500/20",
-        iconColor: "text-violet-400",
+        color: "from-emerald-500/20 to-emerald-600/5",
+        border: "border-emerald-500/20",
+        iconColor: "text-emerald-400",
     },
     {
         icon: FileText,
@@ -120,8 +120,8 @@ function LandingNav() {
             className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between mx-auto max-w-6xl px-6 py-4"
         >
             <div className="flex items-center gap-2.5">
-                <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-violet-500 to-purple-700 flex items-center justify-center shadow-lg shadow-violet-900/40 pulse-glow">
-                    <Brain className="w-5 h-5 text-white" />
+                <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-700 flex items-center justify-center shadow-lg shadow-emerald-900/40 pulse-glow">
+                    <Logo className="w-5 h-5 text-white" />
                 </div>
                 <span className="text-lg font-bold gradient-text">Second Brain</span>
             </div>
@@ -151,8 +151,8 @@ function Hero() {
         <section className="relative min-h-screen flex flex-col items-center justify-center text-center px-6 pt-20 pb-16">
             {/* Decorative blobs */}
             <div className="pointer-events-none absolute inset-0 overflow-hidden">
-                <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-violet-600/15 rounded-full blur-[140px]" />
-                <div className="absolute bottom-1/4 left-1/4 w-72 h-72 bg-purple-700/10 rounded-full blur-[100px]" />
+                <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-emerald-600/15 rounded-full blur-[140px]" />
+                <div className="absolute bottom-1/4 left-1/4 w-72 h-72 bg-teal-700/10 rounded-full blur-[100px]" />
                 <div className="absolute top-1/3 right-1/4 w-56 h-56 bg-fuchsia-700/8 rounded-full blur-[90px]" />
             </div>
 
@@ -161,7 +161,7 @@ function Hero() {
                 variants={fadeUp}
                 initial="hidden"
                 animate="show"
-                className="badge-violet mb-6 inline-flex items-center gap-1.5"
+                className="badge-emerald mb-6 inline-flex items-center gap-1.5"
             >
                 <Sparkles className="w-3 h-3" />
                 Your personal knowledge hub
@@ -219,7 +219,7 @@ function Hero() {
             >
                 {benefits.map(({ icon: Icon, text }) => (
                     <div key={text} className="flex items-center gap-1.5">
-                        <Icon className="w-3.5 h-3.5 text-violet-400" />
+                        <Icon className="w-3.5 h-3.5 text-emerald-400" />
                         {text}
                     </div>
                 ))}
@@ -233,7 +233,7 @@ function Hero() {
                 animate="show"
                 className="mt-16 w-full max-w-3xl"
             >
-                <div className="glass-strong rounded-3xl p-5 border border-white/10 glow-violet-sm overflow-hidden relative">
+                <div className="glass-strong rounded-3xl p-5 border border-white/10 glow-emerald-sm overflow-hidden relative">
                     {/* Mock header */}
                     <div className="flex items-center gap-2 mb-4">
                         <div className="flex gap-1.5">
@@ -248,7 +248,7 @@ function Hero() {
                         {[
                             { tag: "YouTube", c: "from-red-500/15 to-red-600/5", tc: "text-red-400" },
                             { tag: "Tweet", c: "from-sky-500/15 to-sky-600/5", tc: "text-sky-400" },
-                            { tag: "Link", c: "from-violet-500/15 to-violet-600/5", tc: "text-violet-400" },
+                            { tag: "Link", c: "from-emerald-500/15 to-emerald-600/5", tc: "text-emerald-400" },
                         ].map(({ tag, c, tc }) => (
                             <div key={tag} className={`rounded-xl p-3 bg-gradient-to-br ${c} border border-white/8`}>
                                 <div className={`text-[10px] font-semibold ${tc} mb-2`}>{tag}</div>
@@ -282,7 +282,7 @@ function Features() {
             <div className="pointer-events-none absolute inset-0 bg-grid opacity-60" />
             <div className="max-w-6xl mx-auto">
                 <InView className="text-center mb-16">
-                    <motion.div variants={fadeUp} custom={0} className="badge-violet mb-4 inline-flex items-center gap-1.5">
+                    <motion.div variants={fadeUp} custom={0} className="badge-emerald mb-4 inline-flex items-center gap-1.5">
                         <Sparkles className="w-3 h-3" /> Everything in one place
                     </motion.div>
                     <motion.h2 variants={fadeUp} custom={1} className="text-4xl sm:text-5xl font-bold text-white">
@@ -319,10 +319,10 @@ function Features() {
 function HowItWorks() {
     return (
         <section className="py-24 px-6 relative overflow-hidden">
-            <div className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[500px] bg-violet-800/8 rounded-full blur-[150px]" />
+            <div className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[500px] bg-emerald-800/8 rounded-full blur-[150px]" />
             <div className="max-w-5xl mx-auto">
                 <InView className="text-center mb-16">
-                    <motion.div variants={fadeUp} custom={0} className="badge-violet mb-4 inline-flex items-center gap-1.5">
+                    <motion.div variants={fadeUp} custom={0} className="badge-emerald mb-4 inline-flex items-center gap-1.5">
                         <Zap className="w-3 h-3" /> Simple by design
                     </motion.div>
                     <motion.h2 variants={fadeUp} custom={1} className="text-4xl sm:text-5xl font-bold text-white">
@@ -341,11 +341,11 @@ function HowItWorks() {
                                 custom={i * 0.1}
                                 className="glass-strong rounded-2xl p-7 border border-white/10 card-hover relative overflow-hidden"
                             >
-                                <span className="absolute top-4 right-5 text-4xl font-black text-violet-500/10 select-none font-mono">
+                                <span className="absolute top-4 right-5 text-4xl font-black text-emerald-500/10 select-none font-mono">
                                     {num}
                                 </span>
-                                <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-violet-500/30 to-purple-700/20 border border-violet-500/30 flex items-center justify-center mb-4">
-                                    <span className="text-xs font-bold text-violet-300">{num}</span>
+                                <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-emerald-500/30 to-teal-700/20 border border-emerald-500/30 flex items-center justify-center mb-4">
+                                    <span className="text-xs font-bold text-emerald-300">{num}</span>
                                 </div>
                                 <h3 className="text-white font-semibold text-lg mb-2">{title}</h3>
                                 <p className="text-sm text-white/45 leading-relaxed">{desc}</p>
@@ -366,11 +366,11 @@ function CTA() {
                 <motion.div
                     variants={fadeUp}
                     custom={0}
-                    className="glass-strong rounded-3xl p-12 border border-white/10 text-center relative overflow-hidden glow-violet-sm"
+                    className="glass-strong rounded-3xl p-12 border border-white/10 text-center relative overflow-hidden glow-emerald-sm"
                 >
-                    <div className="pointer-events-none absolute inset-0 rounded-3xl bg-gradient-to-br from-violet-600/10 to-purple-800/5" />
-                    <div className="w-16 h-16 rounded-3xl bg-gradient-to-br from-violet-500 to-purple-700 flex items-center justify-center mx-auto mb-6 shadow-2xl shadow-violet-900/50 pulse-glow">
-                        <Brain className="w-8 h-8 text-white" />
+                    <div className="pointer-events-none absolute inset-0 rounded-3xl bg-gradient-to-br from-emerald-600/10 to-teal-800/5" />
+                    <div className="w-16 h-16 rounded-3xl bg-gradient-to-br from-emerald-500 to-teal-700 flex items-center justify-center mx-auto mb-6 shadow-2xl shadow-emerald-900/50 pulse-glow">
+                        <Logo className="w-8 h-8 text-white" />
                     </div>
                     <motion.h2 variants={fadeUp} custom={1} className="text-4xl font-bold gradient-text-white mb-4">
                         Start building your<br />second brain today
@@ -394,7 +394,7 @@ function CTA() {
                     <motion.div variants={fadeUp} custom={4} className="mt-8 flex items-center justify-center gap-5 text-xs text-white/25">
                         {["Free forever", "No credit card", "Cancel anytime"].map((t) => (
                             <span key={t} className="flex items-center gap-1">
-                                <Check className="w-3 h-3 text-violet-400" /> {t}
+                                <Check className="w-3 h-3 text-emerald-400" /> {t}
                             </span>
                         ))}
                     </motion.div>
@@ -410,8 +410,8 @@ function Footer() {
         <footer className="border-t border-white/6 py-8 px-6">
             <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
                 <div className="flex items-center gap-2">
-                    <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-violet-500 to-purple-700 flex items-center justify-center">
-                        <Brain className="w-4 h-4 text-white" />
+                    <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-emerald-500 to-teal-700 flex items-center justify-center">
+                        <Logo className="w-4 h-4 text-white" />
                     </div>
                     <span className="text-sm font-semibold gradient-text">Second Brain</span>
                 </div>

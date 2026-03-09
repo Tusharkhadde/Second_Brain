@@ -69,9 +69,9 @@ function project(x: number, y: number, z: number, cx: number, cy: number, fov: n
 export function ShaderBackground({
     className,
     children,
-    dotColor = "rgba(100, 180, 255, ALPHA)",
-    arcColor = "rgba(100, 180, 255, 0.5)",
-    markerColor = "rgba(100, 220, 255, 1)",
+    dotColor = "rgba(16, 185, 129, ALPHA)",
+    arcColor = "rgba(255, 255, 255, 0.5)",
+    markerColor = "rgba(255, 255, 255, 1)",
     autoRotateSpeed = 0.002,
     connections = DEFAULT_CONNECTIONS,
     markers = DEFAULT_MARKERS,

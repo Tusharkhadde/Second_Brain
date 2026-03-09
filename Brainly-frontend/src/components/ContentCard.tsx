@@ -31,9 +31,9 @@ const typeConfig = {
     link: {
         icon: Link2,
         label: "Link",
-        color: "text-violet-400",
-        badge: "bg-violet-500/15 text-violet-300 border-violet-500/30",
-        gradient: "from-violet-500/10 to-transparent",
+        color: "text-emerald-400",
+        badge: "bg-emerald-500/15 text-emerald-300 border-emerald-500/30",
+        gradient: "from-emerald-500/10 to-transparent",
     },
     document: {
         icon: FileText,
@@ -101,7 +101,7 @@ export function ContentCard({ item, onDelete, readOnly = false, index = 0 }: Con
             <div
                 className={cn(
                     "relative overflow-hidden rounded-2xl glass border border-white/8",
-                    "hover:border-violet-500/25 transition-all duration-300"
+                    "hover:border-emerald-500/25 transition-all duration-300"
                 )}
             >
                 {/* Top gradient accent */}
@@ -168,7 +168,7 @@ export function ContentCard({ item, onDelete, readOnly = false, index = 0 }: Con
                             href={item.link}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className={cn("text-sm truncate block transition-colors hover:text-violet-300", config.color)}
+                            className={cn("text-sm truncate block transition-colors hover:text-emerald-300", config.color)}
                         >
                             {item.link.length > 60 ? item.link.slice(0, 60) + "..." : item.link}
                         </a>
@@ -181,7 +181,7 @@ export function ContentCard({ item, onDelete, readOnly = false, index = 0 }: Con
                         {item.tags.map((tag) => (
                             <span
                                 key={tag}
-                                className="inline-flex items-center px-2 py-0.5 rounded-lg bg-violet-600/15 border border-violet-500/25 text-violet-300/80 text-[11px] font-medium"
+                                className="inline-flex items-center px-2 py-0.5 rounded-lg bg-emerald-600/15 border border-emerald-500/25 text-emerald-300/80 text-[11px] font-medium"
                             >
                                 #{tag}
                             </span>
@@ -200,11 +200,11 @@ export function ContentCard({ item, onDelete, readOnly = false, index = 0 }: Con
                         >
                             <Copy className="w-3.5 h-3.5" />
                         </Button>
-                        {copied && <span className="text-xs text-violet-400 animate-pulse">Copied!</span>}
+                        {copied && <span className="text-xs text-emerald-400 animate-pulse">Copied!</span>}
                     </div>
                     <div className="flex items-center gap-1">
                         <a href={item.link} target="_blank" rel="noopener noreferrer">
-                            <Button variant="ghost" size="icon" className="h-7 w-7 text-white/30 hover:text-violet-400">
+                            <Button variant="ghost" size="icon" className="h-7 w-7 text-white/30 hover:text-emerald-400">
                                 <ExternalLink className="w-3.5 h-3.5" />
                             </Button>
                         </a>

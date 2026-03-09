@@ -9,6 +9,7 @@ import { AddContentModal } from "@/components/AddContentModal";
 import { ShareModal } from "@/components/ShareModal";
 import { contentApi, type ContentItem, type ContentType } from "@/lib/api";
 import { Plus, Brain, Search, Loader2, X } from "lucide-react";
+import { Logo } from "@/components/Logo";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
@@ -133,7 +134,7 @@ export function DashboardPage() {
                         {loading ? (
                             <div className="flex items-center justify-center py-32">
                                 <div className="flex flex-col items-center gap-4">
-                                    <Loader2 className="w-8 h-8 text-violet-400 animate-spin" />
+                                    <Loader2 className="w-8 h-8 text-emerald-400 animate-spin" />
                                     <p className="text-sm text-white/40">Loading your brain...</p>
                                 </div>
                             </div>
@@ -144,7 +145,7 @@ export function DashboardPage() {
                                 className="flex flex-col items-center justify-center py-32 gap-5"
                             >
                                 <div className="w-20 h-20 rounded-3xl glass border border-white/10 flex items-center justify-center float">
-                                    <Brain className="w-9 h-9 text-violet-400/60" />
+                                    <Logo className="w-9 h-9 text-emerald-400/60" />
                                 </div>
                                 <div className="text-center">
                                     <p className="text-white/50 font-medium">
@@ -184,7 +185,7 @@ export function DashboardPage() {
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => setAddOpen(true)}
-                className="fixed bottom-6 right-6 md:hidden w-14 h-14 bg-violet-600 rounded-2xl flex items-center justify-center shadow-2xl shadow-violet-900/50 pulse-glow z-40"
+                className="fixed bottom-6 right-6 md:hidden w-14 h-14 bg-emerald-600 rounded-2xl flex items-center justify-center shadow-2xl shadow-emerald-900/50 pulse-glow z-40"
             >
                 <Plus className="w-6 h-6 text-white" />
             </motion.button>

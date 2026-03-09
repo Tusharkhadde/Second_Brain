@@ -5,6 +5,7 @@ import { ShaderBackground } from "@/components/ui/ShaderBackground";
 import { ContentCard } from "@/components/ContentCard";
 import { brainApi, type ContentItem } from "@/lib/api";
 import { Brain, Loader2, AlertCircle, User } from "lucide-react";
+import { Logo } from "@/components/Logo";
 import { Button } from "@/components/ui/button";
 
 export function SharedBrainPage() {
@@ -32,8 +33,8 @@ export function SharedBrainPage() {
                 <div className="glass border-b border-white/5" style={{ backdropFilter: "blur(24px)" }}>
                     <div className="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
                         <div className="flex items-center gap-2.5 cursor-pointer" onClick={() => navigate("/")}>
-                            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-violet-500 to-purple-700 flex items-center justify-center">
-                                <Brain className="w-4 h-4 text-white" />
+                            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-emerald-500 to-teal-700 flex items-center justify-center">
+                                <Logo className="w-4 h-4 text-white" />
                             </div>
                             <span className="font-bold gradient-text">Second Brain</span>
                         </div>
@@ -47,7 +48,7 @@ export function SharedBrainPage() {
             <div className="max-w-7xl mx-auto px-4 sm:px-6 pt-28 pb-12">
                 {loading ? (
                     <div className="flex items-center justify-center py-32">
-                        <Loader2 className="w-8 h-8 text-violet-400 animate-spin" />
+                        <Loader2 className="w-8 h-8 text-emerald-400 animate-spin" />
                     </div>
                 ) : error ? (
                     <motion.div
@@ -75,14 +76,14 @@ export function SharedBrainPage() {
                             className="mb-8"
                         >
                             <div className="flex items-center gap-3 mb-2">
-                                <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-violet-500/30 to-purple-700/30 border border-violet-500/30 flex items-center justify-center">
-                                    <User className="w-5 h-5 text-violet-400" />
+                                <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-500/30 to-teal-700/30 border border-emerald-500/30 flex items-center justify-center">
+                                    <User className="w-5 h-5 text-emerald-400" />
                                 </div>
                                 <div>
                                     <h1 className="text-xl font-bold gradient-text-white">{username}'s Brain</h1>
                                     <p className="text-sm text-white/40">{content.length} items shared</p>
                                 </div>
-                                <span className="badge-violet ml-2">Public</span>
+                                <span className="badge-emerald ml-2">Public</span>
                             </div>
                         </motion.div>
 
@@ -102,7 +103,7 @@ export function SharedBrainPage() {
                         >
                             <p className="text-sm text-white/30">Want to build your own knowledge base?</p>
                             <Button size="lg" onClick={() => navigate("/signup")}>
-                                <Brain className="w-4 h-4" />
+                                <Logo className="w-4 h-4" />
                                 Create your Second Brain →
                             </Button>
                         </motion.div>

@@ -46,14 +46,14 @@ export function Sidebar({ activeFilter, onFilterChange, counts = {} }: SidebarPr
                         className={cn(
                             "flex items-center gap-3 w-full px-3 py-2.5 rounded-xl text-sm font-medium transition-all duration-200 text-left",
                             isActive
-                                ? "bg-violet-600/20 text-violet-300 border border-violet-500/30"
+                                ? "bg-emerald-600/20 text-emerald-300 border border-emerald-500/30"
                                 : "text-white/50 hover:text-white/80 hover:bg-white/5 border border-transparent"
                         )}
                     >
                         <Icon
                             className={cn(
                                 "w-4 h-4 shrink-0",
-                                isActive ? "text-violet-400" : "text-white/30"
+                                isActive ? "text-emerald-400" : "text-white/30"
                             )}
                             size={16}
                         />
@@ -63,7 +63,7 @@ export function Sidebar({ activeFilter, onFilterChange, counts = {} }: SidebarPr
                                 className={cn(
                                     "text-xs px-1.5 py-0.5 rounded-full",
                                     isActive
-                                        ? "bg-violet-500/30 text-violet-300"
+                                        ? "bg-emerald-500/30 text-emerald-300"
                                         : "bg-white/8 text-white/40"
                                 )}
                             >
