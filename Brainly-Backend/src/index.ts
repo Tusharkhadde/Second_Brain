@@ -24,13 +24,18 @@ app.post("/api/v1/signup", async (req, res) => {
     try {
 
 
-        await UserModel.create({
+        const user = await UserModel.create({
             username: username,
             password: password
         })
 
+        const token = jwt.sign({
+            userId: user._id
+        }, JWT_PASSWORD);
+
         res.json({
-            message: "User signed up"
+            message: "User signed up",
+            token: token
         })
     } catch (e) {
         res.status(400).json({
