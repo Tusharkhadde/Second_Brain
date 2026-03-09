@@ -30,11 +30,19 @@ export function SignupPage() {
         setLoading(true);
         setError("");
         try {
-            await authApi.signup(username, password);
-            setSuccess(true);
-            setTimeout(() => navigate("/signin"), 1500);
-        } catch {
-            setError("Username already taken. Try a different one.");
+            const data = await authApi.signup(username, password);
+            if (data.token) {
+                localStorage.setItem("token", data.token);
+                localStorage.setItem("username", username);
+                setSuccess(true);
+                setTimeout(() => navigate("/dashboard"), 1500);
+            } else {
+                setSuccess(true);
+                setTimeout(() => navigate("/signin"), 1500);
+            }
+        } catch (err: any) {
+            const errorMsg = err.response?.data?.message || err.message || "Username already taken. Try a different one.";
+            setError(errorMsg);
         } finally {
             setLoading(false);
         }
@@ -105,7 +113,7 @@ export function SignupPage() {
                                         <CheckCircle2 className="w-7 h-7 text-emerald-400" />
                                     </div>
                                     <p className="text-white font-medium">Account created!</p>
-                                    <p className="text-sm text-white/40">Redirecting you to sign in...</p>
+                                    <p className="text-sm text-white/40">Redirecting to your dashboard...</p>
                                 </motion.div>
                             ) : (
                                 <form onSubmit={handleSubmit} className="space-y-4">

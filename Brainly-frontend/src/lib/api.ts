@@ -20,10 +20,14 @@ export default api;
 
 // Typed API helpers
 export const authApi = {
-    signup: (username: string, password: string) =>
-        api.post("/api/v1/signup", { username, password }),
-    signin: (username: string, password: string) =>
-        api.post<{ token: string }>("/api/v1/signin", { username, password }),
+    signup: async (username: string, password: string) => {
+        const response = await api.post<{ token?: string, message: string }>("/api/v1/signup", { username, password });
+        return response.data;
+    },
+    signin: async (username: string, password: string) => {
+        const response = await api.post<{ token: string, message?: string }>("/api/v1/signin", { username, password });
+        return response.data;
+    },
 };
 
 export const contentApi = {
