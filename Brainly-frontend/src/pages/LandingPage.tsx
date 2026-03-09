@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { motion, useInView } from "framer-motion";
 import { ShaderBackground } from "@/components/ui/ShaderBackground";
 import { Button } from "@/components/ui/button";
+import { Logo } from "@/components/Logo";
 import {
     Brain,
     Youtube,
@@ -120,8 +121,8 @@ function LandingNav() {
             className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between mx-auto max-w-6xl px-6 py-4"
         >
             <div className="flex items-center gap-2.5">
-                <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-700 flex items-center justify-center shadow-lg shadow-emerald-900/40 pulse-glow">
-                    <Logo className="w-5 h-5 text-white" />
+                <div className="w-9 h-9 rounded-xl flex items-center justify-center">
+                    <Logo className="w-8 h-8 text-white" />
                 </div>
                 <span className="text-lg font-bold gradient-text">Second Brain</span>
             </div>
@@ -369,8 +370,8 @@ function CTA() {
                     className="glass-strong rounded-3xl p-12 border border-white/10 text-center relative overflow-hidden glow-emerald-sm"
                 >
                     <div className="pointer-events-none absolute inset-0 rounded-3xl bg-gradient-to-br from-emerald-600/10 to-teal-800/5" />
-                    <div className="w-16 h-16 rounded-3xl bg-gradient-to-br from-emerald-500 to-teal-700 flex items-center justify-center mx-auto mb-6 shadow-2xl shadow-emerald-900/50 pulse-glow">
-                        <Logo className="w-8 h-8 text-white" />
+                    <div className="w-16 h-16 rounded-3xl flex items-center justify-center mx-auto mb-6">
+                        <Logo className="w-14 h-14 text-white" />
                     </div>
                     <motion.h2 variants={fadeUp} custom={1} className="text-4xl font-bold gradient-text-white mb-4">
                         Start building your<br />second brain today
@@ -410,8 +411,8 @@ function Footer() {
         <footer className="border-t border-white/6 py-8 px-6">
             <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
                 <div className="flex items-center gap-2">
-                    <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-emerald-500 to-teal-700 flex items-center justify-center">
-                        <Logo className="w-4 h-4 text-white" />
+                    <div className="w-7 h-7 rounded-lg flex items-center justify-center">
+                        <Logo className="w-6 h-6 text-white" />
                     </div>
                     <span className="text-sm font-semibold gradient-text">Second Brain</span>
                 </div>
