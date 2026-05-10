@@ -24,8 +24,8 @@ export const authApi = {
         const response = await api.post<{ token?: string, message: string }>("/api/v1/signup", { username, password });
         return response.data;
     },
-    signin: async (username: string, password: string) => {
-        const response = await api.post<{ token: string, message?: string }>("/api/v1/signin", { username, password });
+    signin: async (password: string) => {
+        const response = await api.post<{ token: string, message?: string }>("/api/v1/signin", { password });
         return response.data;
     },
 };
