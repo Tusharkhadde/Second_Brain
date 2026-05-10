@@ -1,4 +1,4 @@
-import { Brain, Plus, Share2, LogOut, Sparkles } from "lucide-react";
+import { Plus, Share2, LogOut, Sparkles } from "lucide-react";
 import { Logo } from "@/components/Logo";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
@@ -26,8 +26,8 @@ export function Navbar({ onAddContent, onShare, username }: NavbarProps) {
             className="fixed top-0 left-0 right-0 z-50"
         >
             <div
-                className="glass border-b border-white/5 shadow-lg shadow-black/20"
-                style={{ backdropFilter: "blur(24px)" }}
+                className="glass border-b border-white/5 shadow-lg shadow-black/40"
+                style={{ backdropFilter: "blur(24px)", backgroundColor: "rgba(0, 0, 0, 0.7)" }}
             >
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
                     {/* Logo */}
@@ -44,19 +44,19 @@ export function Navbar({ onAddContent, onShare, username }: NavbarProps) {
                     {/* Actions */}
                     <div className="flex items-center gap-2">
                         {username && (
-                            <span className="hidden md:flex items-center gap-2 text-sm text-white/50 mr-2">
-                                <Sparkles className="w-3.5 h-3.5 text-emerald-400" />
+                            <span className="hidden md:flex items-center gap-2 text-sm text-white/40 mr-2">
+                                <Sparkles className="w-3.5 h-3.5 text-emerald-500" />
                                 {username}
                             </span>
                         )}
                         {onShare && (
-                            <Button variant="outline" size="sm" onClick={onShare} className="hidden sm:flex">
+                            <Button variant="outline" size="sm" onClick={onShare} className="hidden sm:flex border-white/10 hover:bg-white/5 text-white/70">
                                 <Share2 className="w-3.5 h-3.5" />
                                 Share Brain
                             </Button>
                         )}
                         {onAddContent && (
-                            <Button size="sm" onClick={onAddContent} className="hidden sm:flex">
+                            <Button size="sm" onClick={onAddContent} className="hidden sm:flex bg-emerald-600 hover:bg-emerald-500 text-white border-0">
                                 <Plus className="w-3.5 h-3.5" />
                                 Add Content
                             </Button>
@@ -65,13 +65,13 @@ export function Navbar({ onAddContent, onShare, username }: NavbarProps) {
                             variant="ghost"
                             size="icon"
                             onClick={handleLogout}
-                            className="text-white/40 hover:text-red-400 hover:bg-red-500/10"
+                            className="text-white/30 hover:text-red-400 hover:bg-red-500/10"
                         >
                             <LogOut className="w-4 h-4" />
                         </Button>
                         {/* Mobile add button */}
                         {onAddContent && (
-                            <Button size="icon" onClick={onAddContent} className="sm:hidden">
+                            <Button size="icon" onClick={onAddContent} className="sm:hidden bg-emerald-600 hover:bg-emerald-500 text-white border-0">
                                 <Plus className="w-4 h-4" />
                             </Button>
                         )}
