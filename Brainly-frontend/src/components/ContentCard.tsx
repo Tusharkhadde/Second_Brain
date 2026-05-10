@@ -2,7 +2,6 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { Trash2, ExternalLink, Twitter, Youtube, Link2, FileText, BookOpen, Copy } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
 import type { ContentItem } from "@/lib/api";
 
@@ -18,36 +17,36 @@ const typeConfig = {
         icon: Twitter,
         label: "Tweet",
         color: "text-sky-400",
-        badge: "bg-sky-500/15 text-sky-300 border-sky-500/30",
+        badge: "bg-sky-500/10 text-sky-400 border-sky-500/20",
         gradient: "from-sky-500/10 to-transparent",
     },
     youtube: {
         icon: Youtube,
         label: "YouTube",
         color: "text-red-400",
-        badge: "bg-red-500/15 text-red-300 border-red-500/30",
+        badge: "bg-red-500/10 text-red-400 border-red-500/20",
         gradient: "from-red-500/10 to-transparent",
     },
     link: {
         icon: Link2,
         label: "Link",
         color: "text-emerald-400",
-        badge: "bg-emerald-500/15 text-emerald-300 border-emerald-500/30",
+        badge: "bg-emerald-500/10 text-emerald-400 border-emerald-500/20",
         gradient: "from-emerald-500/10 to-transparent",
     },
     document: {
         icon: FileText,
         label: "Document",
         color: "text-amber-400",
-        badge: "bg-amber-500/15 text-amber-300 border-amber-500/30",
+        badge: "bg-amber-500/10 text-amber-400 border-amber-500/20",
         gradient: "from-amber-500/10 to-transparent",
     },
     notion: {
         icon: BookOpen,
         label: "Notion",
-        color: "text-gray-400",
-        badge: "bg-gray-500/15 text-gray-300 border-gray-500/30",
-        gradient: "from-gray-500/10 to-transparent",
+        color: "text-slate-400",
+        badge: "bg-white/5 text-white/50 border-white/10",
+        gradient: "from-white/10 to-transparent",
     },
 };
 
@@ -100,12 +99,12 @@ export function ContentCard({ item, onDelete, readOnly = false, index = 0 }: Con
         >
             <div
                 className={cn(
-                    "relative overflow-hidden rounded-2xl glass border border-white/8",
-                    "hover:border-emerald-500/25 transition-all duration-300"
+                    "relative overflow-hidden rounded-2xl bg-[#0a0a0a] border border-white/5",
+                    "hover:border-emerald-500/40 transition-all duration-300"
                 )}
             >
                 {/* Top gradient accent */}
-                <div className={cn("absolute top-0 left-0 right-0 h-px bg-gradient-to-r", config.gradient, "to-transparent opacity-60")} />
+                <div className={cn("absolute top-0 left-0 right-0 h-px bg-gradient-to-r", config.gradient, "to-transparent opacity-40")} />
 
                 {/* Card header */}
                 <div className="flex items-start justify-between p-4 pb-3">
@@ -113,15 +112,15 @@ export function ContentCard({ item, onDelete, readOnly = false, index = 0 }: Con
                         <div
                             className={cn(
                                 "w-8 h-8 rounded-lg flex items-center justify-center shrink-0",
-                                "bg-white/5 border border-white/8"
+                                "bg-white/5 border border-white/5"
                             )}
                         >
                             <Icon className={cn("w-4 h-4", config.color)} />
                         </div>
                         <div className="min-w-0">
-                            <p className="text-xs text-white/40 truncate">{getDomain(item.link)}</p>
+                            <p className="text-xs text-white/30 truncate">{getDomain(item.link)}</p>
                             {item.title && (
-                                <p className="text-sm font-medium text-white/85 truncate mt-0.5 max-w-[200px]">
+                                <p className="text-sm font-medium text-white/90 truncate mt-0.5 max-w-[200px]">
                                     {item.title}
                                 </p>
                             )}
@@ -134,10 +133,10 @@ export function ContentCard({ item, onDelete, readOnly = false, index = 0 }: Con
 
                 {/* Embed area */}
                 {youtubeId && (
-                    <div className="mx-4 mb-3 rounded-xl overflow-hidden bg-black/30 aspect-video">
+                    <div className="mx-4 mb-3 rounded-xl overflow-hidden bg-black aspect-video border border-white/5">
                         <iframe
                             src={`https://www.youtube.com/embed/${youtubeId}`}
-                            className="w-full h-full"
+                            className="w-full h-full border-0"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                             allowFullScreen
                             loading="lazy"
@@ -146,16 +145,16 @@ export function ContentCard({ item, onDelete, readOnly = false, index = 0 }: Con
                 )}
 
                 {tweetId && (
-                    <div className="mx-4 mb-3 rounded-xl overflow-hidden bg-black/20 border border-white/5 p-3">
+                    <div className="mx-4 mb-3 rounded-xl overflow-hidden bg-white/2 border border-white/5 p-3">
                         <div className="flex items-center gap-2 mb-2">
                             <Twitter className="w-4 h-4 text-sky-400" />
-                            <span className="text-xs text-sky-400 font-medium">Twitter / X</span>
+                            <span className="text-xs text-sky-400/80 font-medium">Twitter / X</span>
                         </div>
                         <a
                             href={item.link}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-sm text-white/70 hover:text-white transition-colors"
+                            className="text-sm text-white/50 hover:text-white transition-colors"
                         >
                             View tweet →
                         </a>
@@ -163,12 +162,12 @@ export function ContentCard({ item, onDelete, readOnly = false, index = 0 }: Con
                 )}
 
                 {!youtubeId && !tweetId && (
-                    <div className="mx-4 mb-3 px-3 py-2.5 rounded-xl bg-white/3 border border-white/6">
+                    <div className="mx-4 mb-3 px-3 py-2.5 rounded-xl bg-white/2 border border-white/5">
                         <a
                             href={item.link}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className={cn("text-sm truncate block transition-colors hover:text-emerald-300", config.color)}
+                            className={cn("text-sm truncate block transition-colors hover:text-white", config.color)}
                         >
                             {item.link.length > 60 ? item.link.slice(0, 60) + "..." : item.link}
                         </a>
@@ -181,7 +180,7 @@ export function ContentCard({ item, onDelete, readOnly = false, index = 0 }: Con
                         {item.tags.map((tag) => (
                             <span
                                 key={tag}
-                                className="inline-flex items-center px-2 py-0.5 rounded-lg bg-emerald-600/15 border border-emerald-500/25 text-emerald-300/80 text-[11px] font-medium"
+                                className="inline-flex items-center px-2 py-0.5 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-[11px] font-medium"
                             >
                                 #{tag}
                             </span>
@@ -196,15 +195,15 @@ export function ContentCard({ item, onDelete, readOnly = false, index = 0 }: Con
                             variant="ghost"
                             size="icon"
                             onClick={copyLink}
-                            className="h-7 w-7 text-white/30 hover:text-white/70"
+                            className="h-7 w-7 text-white/20 hover:text-white/60"
                         >
                             <Copy className="w-3.5 h-3.5" />
                         </Button>
-                        {copied && <span className="text-xs text-emerald-400 animate-pulse">Copied!</span>}
+                        {copied && <span className="text-xs text-emerald-500 animate-pulse">Copied!</span>}
                     </div>
                     <div className="flex items-center gap-1">
                         <a href={item.link} target="_blank" rel="noopener noreferrer">
-                            <Button variant="ghost" size="icon" className="h-7 w-7 text-white/30 hover:text-emerald-400">
+                            <Button variant="ghost" size="icon" className="h-7 w-7 text-white/20 hover:text-emerald-400">
                                 <ExternalLink className="w-3.5 h-3.5" />
                             </Button>
                         </a>
@@ -212,7 +211,7 @@ export function ContentCard({ item, onDelete, readOnly = false, index = 0 }: Con
                             <Button
                                 variant="ghost"
                                 size="icon"
-                                className="h-7 w-7 text-white/30 hover:text-red-400 hover:bg-red-500/10 opacity-0 group-hover:opacity-100 transition-all"
+                                className="h-7 w-7 text-white/20 hover:text-red-400 hover:bg-red-500/10 opacity-0 group-hover:opacity-100 transition-all"
                                 onClick={() => onDelete(item._id)}
                             >
                                 <Trash2 className="w-3.5 h-3.5" />
