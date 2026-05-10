@@ -1,14 +1,13 @@
 import { useState, useEffect, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { ShaderBackground } from "@/components/ui/ShaderBackground";
 import { Navbar } from "@/components/Navbar";
 import { Sidebar } from "@/components/Sidebar";
 import { ContentCard } from "@/components/ContentCard";
 import { AddContentModal } from "@/components/AddContentModal";
 import { ShareModal } from "@/components/ShareModal";
 import { contentApi, type ContentItem, type ContentType } from "@/lib/api";
-import { Plus, Brain, Search, Loader2, X } from "lucide-react";
+import { Plus, Search, Loader2, X } from "lucide-react";
 import { Logo } from "@/components/Logo";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -78,7 +77,7 @@ export function DashboardPage() {
     }, [content]);
 
     return (
-        <ShaderBackground>
+        <div className="bg-black min-h-screen relative overflow-hidden">
             <Navbar
                 onAddContent={() => setAddOpen(true)}
                 onShare={() => setShareOpen(true)}
@@ -93,10 +92,10 @@ export function DashboardPage() {
                     transition={{ delay: 0.1 }}
                     className="mb-6"
                 >
-                    <h2 className="text-xl font-semibold text-white/80">
+                    <h2 className="text-xl font-semibold text-white/90">
                         {username ? `${username}'s Brain` : "Your Brain"}
                     </h2>
-                    <p className="text-sm text-white/35 mt-0.5">
+                    <p className="text-sm text-white/30 mt-0.5">
                         {content.length} items saved
                     </p>
                 </motion.div>
@@ -108,12 +107,12 @@ export function DashboardPage() {
                     transition={{ delay: 0.15 }}
                     className="relative mb-6"
                 >
-                    <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-white/25 pointer-events-none" />
+                    <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-white/20 pointer-events-none" />
                     <Input
                         placeholder="Search your content..."
                         value={search}
                         onChange={(e) => setSearch(e.target.value)}
-                        className="pl-9 pr-9 h-11"
+                        className="pl-9 pr-9 h-11 bg-white/5 border-white/10 text-white placeholder:text-white/20"
                     />
                     {search && (
                         <button
@@ -134,8 +133,8 @@ export function DashboardPage() {
                         {loading ? (
                             <div className="flex items-center justify-center py-32">
                                 <div className="flex flex-col items-center gap-4">
-                                    <Loader2 className="w-8 h-8 text-emerald-400 animate-spin" />
-                                    <p className="text-sm text-white/40">Loading your brain...</p>
+                                    <Loader2 className="w-8 h-8 text-emerald-500 animate-spin" />
+                                    <p className="text-sm text-white/30">Loading your brain...</p>
                                 </div>
                             </div>
                         ) : filtered.length === 0 ? (
@@ -144,19 +143,19 @@ export function DashboardPage() {
                                 animate={{ opacity: 1 }}
                                 className="flex flex-col items-center justify-center py-32 gap-5"
                             >
-                                <div className="w-20 h-20 rounded-3xl glass border border-white/10 flex items-center justify-center float">
-                                    <Logo className="w-9 h-9 text-emerald-400/60" />
+                                <div className="w-20 h-20 rounded-3xl glass border border-white/10 flex items-center justify-center float bg-white/2">
+                                    <Logo className="w-9 h-9 text-emerald-500/60" />
                                 </div>
                                 <div className="text-center">
-                                    <p className="text-white/50 font-medium">
+                                    <p className="text-white/60 font-medium">
                                         {search ? "No results found" : filter !== "all" ? `No ${filter} content yet` : "Your brain is empty"}
                                     </p>
-                                    <p className="text-sm text-white/25 mt-1">
+                                    <p className="text-sm text-white/20 mt-1">
                                         {!search && "Add your first piece of content to get started"}
                                     </p>
                                 </div>
                                 {!search && (
-                                    <Button onClick={() => setAddOpen(true)}>
+                                    <Button onClick={() => setAddOpen(true)} className="bg-emerald-600 hover:bg-emerald-500 text-white border-0">
                                         <Plus className="w-4 h-4" />
                                         Add Content
                                     </Button>
@@ -185,13 +184,13 @@ export function DashboardPage() {
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => setAddOpen(true)}
-                className="fixed bottom-6 right-6 md:hidden w-14 h-14 bg-emerald-600 rounded-2xl flex items-center justify-center shadow-2xl shadow-emerald-900/50 pulse-glow z-40"
+                className="fixed bottom-6 right-6 md:hidden w-14 h-14 bg-emerald-600 rounded-2xl flex items-center justify-center shadow-2xl shadow-emerald-900/40 pulse-glow z-40"
             >
                 <Plus className="w-6 h-6 text-white" />
             </motion.button>
 
             <AddContentModal open={addOpen} onClose={() => setAddOpen(false)} onAdded={fetchContent} />
             <ShareModal open={shareOpen} onClose={() => setShareOpen(false)} />
-        </ShaderBackground>
+        </div>
     );
 }
