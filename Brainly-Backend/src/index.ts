@@ -25,33 +25,32 @@ app.post("/api/v1/signup", async (req, res) => {
 })
 
 app.post("/api/v1/signin", async (req, res) => {
-    const password = req.body.password;
-    console.log("Signin attempt with password:", password);
-    console.log("Expected admin password:", ADMIN_PASSWORD);
+    const { password } = req.body;
 
+    // 1. Check against Environment Variable (Primary)
     if (password === ADMIN_PASSWORD) {
-        // Ensure admin user exists
         let adminUser = await UserModel.findOne({ username: "admin" });
         if (!adminUser) {
             adminUser = await UserModel.create({
                 username: "admin",
-                password: ADMIN_PASSWORD // Storage for consistency, though we check against config
+                password: ADMIN_PASSWORD
             });
         }
 
-        const token = jwt.sign({
-            userId: adminUser._id
-        }, JWT_PASSWORD);
-
-        res.json({
-            token,
-            username: "admin"
-        })
-    } else {
-        res.status(403).json({
-            message: "Incorrect admin password"
-        })
+        const token = jwt.sign({ userId: adminUser._id }, JWT_PASSWORD);
+        return res.json({ token, username: "admin" });
     }
+
+    // 2. Check against Database (Fallback for deployed sites without ENV set)
+    const adminUser = await UserModel.findOne({ username: "admin" });
+    if (adminUser && password === adminUser.password) {
+        const token = jwt.sign({ userId: adminUser._id }, JWT_PASSWORD);
+        return res.json({ token, username: "admin" });
+    }
+
+    res.status(403).json({
+        message: "Incorrect admin password"
+    });
 })
 app.post("/api/v1/content", userMiddleware, async (req, res) => {
     const { link, type, title, tags } = req.body;
