@@ -61,32 +61,32 @@ export function ShareModal({ open, onClose }: ShareModalProps) {
 
     return (
         <Dialog open={open} onOpenChange={(v) => !v && onClose()}>
-            <DialogContent>
+            <DialogContent className="bg-[#0a0a0a] border border-white/10 text-white">
                 <DialogHeader>
-                    <DialogTitle>Share Your Brain</DialogTitle>
-                    <DialogDescription>
+                    <DialogTitle className="text-white">Share Your Brain</DialogTitle>
+                    <DialogDescription className="text-white/40">
                         Create a public link to share your curated knowledge with others.
                     </DialogDescription>
                 </DialogHeader>
 
                 <div className="space-y-4">
                     {/* Status indicator */}
-                    <div className="flex items-center justify-between p-4 rounded-xl glass border border-white/8">
+                    <div className="flex items-center justify-between p-4 rounded-xl bg-white/5 border border-white/5">
                         <div className="flex items-center gap-3">
                             {isSharing ? (
-                                <div className="w-8 h-8 rounded-lg bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center">
+                                <div className="w-8 h-8 rounded-lg bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center">
                                     <Globe className="w-4 h-4 text-emerald-400" />
                                 </div>
                             ) : (
                                 <div className="w-8 h-8 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center">
-                                    <Lock className="w-4 h-4 text-white/40" />
+                                    <Lock className="w-4 h-4 text-white/20" />
                                 </div>
                             )}
                             <div>
                                 <p className="text-sm font-medium text-white">
                                     {isSharing ? "Brain is public" : "Brain is private"}
                                 </p>
-                                <p className="text-xs text-white/40">
+                                <p className="text-xs text-white/30">
                                     {isSharing ? "Anyone with the link can view" : "Only you can see your content"}
                                 </p>
                             </div>
@@ -96,6 +96,10 @@ export function ShareModal({ open, onClose }: ShareModalProps) {
                             size="sm"
                             onClick={isSharing ? disableShare : enableShare}
                             disabled={loadingShare}
+                            className={cn(
+                                !isSharing && "bg-emerald-600 hover:bg-emerald-500 text-white border-0",
+                                isSharing && "border-white/10 text-white/60 hover:bg-white/5"
+                            )}
                         >
                             {loadingShare ? (
                                 <Loader2 className="w-3.5 h-3.5 animate-spin" />
@@ -117,17 +121,17 @@ export function ShareModal({ open, onClose }: ShareModalProps) {
                             animate={{ opacity: 1, y: 0 }}
                             className="space-y-2"
                         >
-                            <p className="text-xs font-medium text-white/50 uppercase tracking-wider">Share Link</p>
-                            <div className="flex items-center gap-2 p-3 rounded-xl bg-white/4 border border-white/8">
-                                <Link2 className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
-                                <span className="text-sm text-white/60 truncate flex-1">{shareUrl}</span>
+                            <p className="text-xs font-medium text-white/20 uppercase tracking-wider">Share Link</p>
+                            <div className="flex items-center gap-2 p-3 rounded-xl bg-white/2 border border-white/5">
+                                <Link2 className="w-3.5 h-3.5 text-emerald-500 shrink-0" />
+                                <span className="text-sm text-white/40 truncate flex-1">{shareUrl}</span>
                                 <Button
                                     variant="ghost"
                                     size="sm"
                                     onClick={copyLink}
                                     className={cn(
                                         "h-7 px-2.5 shrink-0 transition-all",
-                                        copied ? "text-emerald-400" : "text-white/40 hover:text-white"
+                                        copied ? "text-emerald-400" : "text-white/20 hover:text-white"
                                     )}
                                 >
                                     {copied ? <Check className="w-3.5 h-3.5" /> : <Copy className="w-3.5 h-3.5" />}
@@ -139,7 +143,7 @@ export function ShareModal({ open, onClose }: ShareModalProps) {
                 </div>
 
                 <DialogFooter>
-                    <Button variant="outline" onClick={onClose}>Done</Button>
+                    <Button variant="outline" onClick={onClose} className="border-white/10 text-white/60 hover:bg-white/5">Done</Button>
                 </DialogFooter>
             </DialogContent>
         </Dialog>
