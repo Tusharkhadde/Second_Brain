@@ -1,39 +1,38 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ShaderBackground } from "@/components/ui/ShaderBackground";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { authApi } from "@/lib/api";
-import { Brain, Loader2, Sparkles, ArrowRight } from "lucide-react";
+import { Loader2, Sparkles, ArrowRight } from "lucide-react";
 import { Logo } from "@/components/Logo";
 
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 
 export function SigninPage() {
     const navigate = useNavigate();
-    const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        if (!username || !password) { setError("Please fill in all fields"); return; }
+        if (!password) { setError("Please enter the admin password"); return; }
         setLoading(true);
         setError("");
         try {
-            const data = await authApi.signin(username, password);
+            const data = await authApi.signin(password);
             if (data.token) {
                 localStorage.setItem("token", data.token);
-                localStorage.setItem("username", username);
+                localStorage.setItem("username", "admin");
                 navigate("/dashboard");
             } else {
                 setError("Login failed. No token received.");
             }
         } catch (err: any) {
-            const errorMsg = err.response?.data?.message || err.message || "Invalid username or password.";
+            console.error("Signin error details:", err);
+            const errorMsg = err.response?.data?.message || err.message || "Invalid admin password.";
             setError(errorMsg);
         } finally {
             setLoading(false);
@@ -41,10 +40,10 @@ export function SigninPage() {
     };
 
     return (
-        <ShaderBackground className="flex items-center justify-center min-h-screen px-4">
+        <div className="flex items-center justify-center min-h-screen px-4 bg-black relative overflow-hidden">
             {/* Decorative orbs */}
-            <div className="fixed top-1/4 left-1/4 w-96 h-96 bg-emerald-600/15 rounded-full blur-[120px] pointer-events-none" />
-            <div className="fixed bottom-1/4 right-1/4 w-80 h-80 bg-teal-700/10 rounded-full blur-[100px] pointer-events-none" />
+            <div className="fixed top-1/4 left-1/4 w-96 h-96 bg-emerald-600/10 rounded-full blur-[120px] pointer-events-none" />
+            <div className="fixed bottom-1/4 right-1/4 w-80 h-80 bg-teal-700/5 rounded-full blur-[100px] pointer-events-none" />
 
             <motion.div
                 initial={{ opacity: 0, y: 30, scale: 0.97 }}
@@ -53,42 +52,33 @@ export function SigninPage() {
                 className="w-full max-w-md"
             >
                 {/* Card */}
-                <Card className="glass-strong rounded-3xl border border-white/10 glow-emerald-sm bg-transparent">
+                <Card className="glass-strong rounded-3xl border border-white/10 glow-emerald-sm bg-black/40">
                     {/* Header */}
                     <CardHeader className="flex flex-col items-center pb-2">
                         <motion.div
                             animate={{ rotate: [0, 5, -5, 0] }}
                             transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                            className="w-14 h-14 rounded-2xl bg-gradient-to-br from-emerald-500 to-teal-700 flex items-center justify-center mb-4 shadow-xl shadow-emerald-900/40 pulse-glow"
+                            className="w-14 h-14 rounded-2xl bg-gradient-to-br from-emerald-500 to-teal-700 flex items-center justify-center mb-4 shadow-xl shadow-emerald-900/20 pulse-glow"
                         >
                             <Logo className="w-7 h-7 text-white" />
                         </motion.div>
-                        <CardTitle className="text-2xl font-bold gradient-text-white">Welcome back</CardTitle>
-                        <CardDescription className="text-sm text-white/45 mt-1">Sign in to your Second Brain</CardDescription>
+                        <CardTitle className="text-2xl font-bold gradient-text">Admin Access</CardTitle>
+                        <CardDescription className="text-sm text-white/40 mt-1">Enter your password to access Second Brain</CardDescription>
                     </CardHeader>
 
                     {/* Form */}
                     <CardContent>
                         <form onSubmit={handleSubmit} className="space-y-4">
                             <div className="space-y-1.5">
-                                <Label htmlFor="username">Username</Label>
-                                <Input
-                                    id="username"
-                                    placeholder="Enter your username"
-                                    value={username}
-                                    onChange={(e) => setUsername(e.target.value)}
-                                    autoComplete="username"
-                                />
-                            </div>
-                            <div className="space-y-1.5">
-                                <Label htmlFor="password">Password</Label>
+                                <Label htmlFor="password">Admin Password</Label>
                                 <Input
                                     id="password"
                                     type="password"
-                                    placeholder="Enter your password"
+                                    placeholder="Enter admin password"
                                     value={password}
                                     onChange={(e) => setPassword(e.target.value)}
                                     autoComplete="current-password"
+                                    className="bg-white/5 border-white/10 text-white placeholder:text-white/20"
                                 />
                             </div>
 
@@ -102,7 +92,7 @@ export function SigninPage() {
                                 </motion.p>
                             )}
 
-                            <Button type="submit" size="lg" disabled={loading} className="w-full mt-2 group">
+                            <Button type="submit" size="lg" disabled={loading} className="w-full mt-2 group bg-emerald-600 hover:bg-emerald-500 text-white border-0">
                                 {loading ? (
                                     <Loader2 className="w-4 h-4 animate-spin" />
                                 ) : (
@@ -117,23 +107,14 @@ export function SigninPage() {
 
                     {/* Footer */}
                     <CardFooter className="flex flex-col items-center">
-                        <div className="mt-2 text-center">
-                            <p className="text-sm text-white/40">
-                                Don't have an account?{" "}
-                                <Link to="/signup" className="text-emerald-400 hover:text-emerald-300 font-medium transition-colors">
-                                    Sign up free
-                                </Link>
-                            </p>
-                        </div>
-
                         {/* Feature hints */}
-                        <div className="mt-6 pt-5 w-full border-t border-white/6 flex items-center justify-center gap-1.5 text-xs text-white/25">
-                            <Sparkles className="w-3 h-3" />
+                        <div className="mt-2 pt-5 w-full border-t border-white/5 flex items-center justify-center gap-1.5 text-xs text-white/20">
+                            <Sparkles className="w-3 h-3 text-emerald-500/50" />
                             <span>Save anything. Remember everything.</span>
                         </div>
                     </CardFooter>
                 </Card>
             </motion.div>
-        </ShaderBackground>
+        </div>
     );
 }
