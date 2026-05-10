@@ -93,16 +93,16 @@ export function AddContentModal({ open, onClose, onAdded }: AddContentModalProps
 
     return (
         <Dialog open={open} onOpenChange={(v) => !v && handleClose()}>
-            <DialogContent>
+            <DialogContent className="bg-[#0a0a0a] border border-white/10 text-white">
                 <DialogHeader>
-                    <DialogTitle>Add to your Brain</DialogTitle>
-                    <DialogDescription>Save any link, tweet, or resource to your second brain.</DialogDescription>
+                    <DialogTitle className="text-white">Add to your Brain</DialogTitle>
+                    <DialogDescription className="text-white/40">Save any link, tweet, or resource to your second brain.</DialogDescription>
                 </DialogHeader>
 
                 <div className="space-y-4">
                     {/* Type selector */}
                     <div>
-                        <Label className="mb-2 block">Content Type</Label>
+                        <Label className="mb-2 block text-white/60">Content Type</Label>
                         <div className="grid grid-cols-5 gap-2">
                             {types.map((t) => {
                                 const Icon = t.icon;
@@ -115,8 +115,8 @@ export function AddContentModal({ open, onClose, onAdded }: AddContentModalProps
                                         className={cn(
                                             "flex flex-col items-center gap-1.5 p-2.5 rounded-xl border text-xs font-medium transition-all duration-200 cursor-pointer",
                                             type === t.id
-                                                ? "bg-emerald-600/25 border-emerald-500/50 text-emerald-300"
-                                                : "bg-white/4 border-white/8 text-white/50 hover:bg-white/8 hover:text-white/70"
+                                                ? "bg-emerald-500/20 border-emerald-500/40 text-emerald-400"
+                                                : "bg-white/5 border-white/5 text-white/40 hover:bg-white/10 hover:text-white/70"
                                         )}
                                     >
                                         <Icon className="w-4 h-4" size={16} />
@@ -129,33 +129,35 @@ export function AddContentModal({ open, onClose, onAdded }: AddContentModalProps
 
                     {/* URL */}
                     <div className="space-y-1.5">
-                        <Label htmlFor="url">URL *</Label>
+                        <Label htmlFor="url" className="text-white/60">URL *</Label>
                         <Input
                             id="url"
                             placeholder="https://..."
                             value={link}
                             onChange={(e) => setLink(e.target.value)}
                             onKeyDown={(e) => e.key === "Enter" && handleSubmit()}
+                            className="bg-white/5 border-white/10 text-white placeholder:text-white/20"
                         />
                     </div>
 
                     {/* Title */}
                     <div className="space-y-1.5">
-                        <Label htmlFor="title">Title (optional)</Label>
+                        <Label htmlFor="title" className="text-white/60">Title (optional)</Label>
                         <Input
                             id="title"
                             placeholder="Give this a descriptive title..."
                             value={title}
                             onChange={(e) => setTitle(e.target.value)}
+                            className="bg-white/5 border-white/10 text-white placeholder:text-white/20"
                         />
                     </div>
 
                     {/* Tags */}
                     <div className="space-y-1.5">
-                        <Label htmlFor="tags" className="flex items-center gap-1.5">
-                            <Tag className="w-3.5 h-3.5 text-emerald-400" />
+                        <Label htmlFor="tags" className="flex items-center gap-1.5 text-white/60">
+                            <Tag className="w-3.5 h-3.5 text-emerald-500" />
                             Tags
-                            <span className="text-white/30 font-normal text-xs">(optional · press Enter or , to add)</span>
+                            <span className="text-white/20 font-normal text-xs">(optional · press Enter or , to add)</span>
                         </Label>
 
                         {/* tag chip container */}
@@ -163,8 +165,8 @@ export function AddContentModal({ open, onClose, onAdded }: AddContentModalProps
                             onClick={() => tagInputRef.current?.focus()}
                             className={cn(
                                 "flex flex-wrap gap-1.5 min-h-[42px] px-3 py-2 rounded-xl",
-                                "bg-white/4 border border-white/10 cursor-text",
-                                "focus-within:border-emerald-500/50 focus-within:bg-white/6 transition-colors"
+                                "bg-white/5 border border-white/10 cursor-text",
+                                "focus-within:border-emerald-500/40 focus-within:bg-white/8 transition-colors"
                             )}
                         >
                             <AnimatePresence>
@@ -175,13 +177,13 @@ export function AddContentModal({ open, onClose, onAdded }: AddContentModalProps
                                         animate={{ opacity: 1, scale: 1 }}
                                         exit={{ opacity: 0, scale: 0.8 }}
                                         transition={{ duration: 0.15 }}
-                                        className="flex items-center gap-1 px-2 py-0.5 rounded-lg bg-emerald-600/20 border border-emerald-500/30 text-emerald-300 text-xs font-medium"
+                                        className="flex items-center gap-1 px-2 py-0.5 rounded-lg bg-emerald-500/20 border border-emerald-500/30 text-emerald-400 text-xs font-medium"
                                     >
                                         #{tag}
                                         <button
                                             type="button"
                                             onClick={(e) => { e.stopPropagation(); removeTag(tag); }}
-                                            className="text-emerald-400/60 hover:text-emerald-300 transition-colors ml-0.5"
+                                            className="text-emerald-500/60 hover:text-emerald-400 transition-colors ml-0.5"
                                         >
                                             <X className="w-3 h-3" />
                                         </button>
@@ -197,13 +199,13 @@ export function AddContentModal({ open, onClose, onAdded }: AddContentModalProps
                                 onKeyDown={handleTagKeyDown}
                                 onBlur={() => tagInput.trim() && addTag(tagInput)}
                                 placeholder={tags.length === 0 ? "e.g. ai, productivity, research" : ""}
-                                className="flex-1 min-w-[120px] bg-transparent outline-none text-sm text-white/70 placeholder:text-white/25"
+                                className="flex-1 min-w-[120px] bg-transparent outline-none text-sm text-white placeholder:text-white/20"
                                 disabled={tags.length >= 8}
                             />
                         </div>
 
                         {tags.length >= 8 && (
-                            <p className="text-xs text-amber-400/70">Maximum 8 tags reached.</p>
+                            <p className="text-xs text-amber-500/70">Maximum 8 tags reached.</p>
                         )}
                     </div>
 
@@ -214,11 +216,11 @@ export function AddContentModal({ open, onClose, onAdded }: AddContentModalProps
                     )}
                 </div>
 
-                <DialogFooter>
-                    <Button variant="outline" onClick={handleClose} disabled={loading}>
+                <DialogFooter className="bg-white/2 p-4 -mx-6 -mb-6 rounded-b-lg border-t border-white/5">
+                    <Button variant="outline" onClick={handleClose} disabled={loading} className="border-white/10 text-white/60 hover:bg-white/5">
                         Cancel
                     </Button>
-                    <Button onClick={handleSubmit} disabled={loading} className="min-w-[100px]">
+                    <Button onClick={handleSubmit} disabled={loading} className="min-w-[100px] bg-emerald-600 hover:bg-emerald-500 text-white border-0">
                         {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : "Save"}
                     </Button>
                 </DialogFooter>
