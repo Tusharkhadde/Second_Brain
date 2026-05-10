@@ -6,60 +6,50 @@ dotenv.config();
 import jwt from "jsonwebtoken";
 import { ContentModel, UserModel, LinkModel } from "./db";
 import { userMiddleware } from "./middleware";
-import { JWT_PASSWORD } from "./config";
+import { JWT_PASSWORD, ADMIN_PASSWORD } from "./config";
 import { randomBytes } from "crypto";
 mongoose.connect(process.env.MONGO_URL as string)
     .then(() => console.log("DB connected"))
     .catch((err) => console.log(err));
 const app = express();
 app.use(cors({
-    origin: process.env.FRONTEND_URL || ["http://localhost:5173", "http://localhost:5174", "http://localhost:3000", "http://localhost:5175", "https://second-brain-jade-xi.vercel.app"],
+    origin: true,
     credentials: true
 }));
 app.use(express.json());
 
 app.post("/api/v1/signup", async (req, res) => {
-    const username = req.body.username;
-    const password = req.body.password;
-    try {
-
-
-        const user = await UserModel.create({
-            username: username,
-            password: password
-        })
-
-        const token = jwt.sign({
-            userId: user._id
-        }, JWT_PASSWORD);
-
-        res.json({
-            message: "User signed up",
-            token: token
-        })
-    } catch (e) {
-        res.status(400).json({
-            message: "User already exists"
-        })
-    }
-})
-app.post("/api/v1/signin", async (req, res) => {
-    const username = req.body.username;
-    const password = req.body.password;
-    const existingUser = await UserModel.findOne({
-        username,
-        password
+    res.status(403).json({
+        message: "Signup is disabled. Use admin password to sign in."
     })
-    if (existingUser) {
+})
+
+app.post("/api/v1/signin", async (req, res) => {
+    const password = req.body.password;
+    console.log("Signin attempt with password:", password);
+    console.log("Expected admin password:", ADMIN_PASSWORD);
+
+    if (password === ADMIN_PASSWORD) {
+        // Ensure admin user exists
+        let adminUser = await UserModel.findOne({ username: "admin" });
+        if (!adminUser) {
+            adminUser = await UserModel.create({
+                username: "admin",
+                password: ADMIN_PASSWORD // Storage for consistency, though we check against config
+            });
+        }
+
         const token = jwt.sign({
-            userId: existingUser._id
+            userId: adminUser._id
         }, JWT_PASSWORD);
+
         res.json({
-            token
+            token,
+            username: "admin"
         })
     } else {
         res.status(403).json({
-            message: "Incorrect credentials"
+            message: "Incorrect admin password"
         })
     }
 })
