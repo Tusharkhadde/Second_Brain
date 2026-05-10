@@ -1,11 +1,9 @@
 import { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { motion, useInView } from "framer-motion";
-import { ShaderBackground } from "@/components/ui/ShaderBackground";
 import { Button } from "@/components/ui/button";
 import { Logo } from "@/components/Logo";
 import {
-    Brain,
     Youtube,
     Twitter,
     Link2,
@@ -52,54 +50,54 @@ const features = [
         icon: Youtube,
         title: "YouTube Videos",
         desc: "Save your favorite videos with automatic thumbnails and embeds.",
-        color: "from-red-500/20 to-red-600/5",
-        border: "border-red-500/20",
+        color: "from-red-500/10 to-transparent",
+        border: "border-red-500/10",
         iconColor: "text-red-400",
     },
     {
         icon: Twitter,
         title: "Tweets & Threads",
         desc: "Capture insightful tweets before they disappear forever.",
-        color: "from-sky-500/20 to-sky-600/5",
-        border: "border-sky-500/20",
+        color: "from-sky-500/10 to-transparent",
+        border: "border-sky-500/10",
         iconColor: "text-sky-400",
     },
     {
         icon: Link2,
         title: "Web Links",
         desc: "Bookmark any URL with rich previews and custom titles.",
-        color: "from-emerald-500/20 to-emerald-600/5",
-        border: "border-emerald-500/20",
+        color: "from-emerald-500/10 to-transparent",
+        border: "border-emerald-500/10",
         iconColor: "text-emerald-400",
     },
     {
         icon: FileText,
         title: "Documents & Notes",
         desc: "Store documents, notes, Notion pages, and more in one place.",
-        color: "from-emerald-500/20 to-emerald-600/5",
-        border: "border-emerald-500/20",
+        color: "from-emerald-500/10 to-transparent",
+        border: "border-emerald-500/10",
         iconColor: "text-emerald-400",
     },
     {
         icon: Share2,
         title: "Share Your Brain",
         desc: "Generate a public link to share your curated collection with anyone.",
-        color: "from-pink-500/20 to-pink-600/5",
-        border: "border-pink-500/20",
+        color: "from-pink-500/10 to-transparent",
+        border: "border-pink-500/10",
         iconColor: "text-pink-400",
     },
     {
         icon: Search,
         title: "Instant Search",
         desc: "Find anything instantly with full-text search across all your content.",
-        color: "from-amber-500/20 to-amber-600/5",
-        border: "border-amber-500/20",
+        color: "from-amber-500/10 to-transparent",
+        border: "border-amber-500/10",
         iconColor: "text-amber-400",
     },
 ];
 
 const steps = [
-    { num: "01", title: "Create your account", desc: "Sign up for free in seconds — no credit card required." },
+    { num: "01", title: "Access restricted", desc: "Admin-only system ensures your brain stays secure and private." },
     { num: "02", title: "Save what matters", desc: "Add videos, tweets, links, or documents with one click." },
     { num: "03", title: "Organize & search", desc: "Filter by type and search instantly across everything you've saved." },
     { num: "04", title: "Share your brain", desc: "Generate a public link and share your curated knowledge with the world." },
@@ -127,17 +125,10 @@ function LandingNav() {
                 <span className="text-lg font-bold gradient-text">Second Brain</span>
             </div>
 
-
-
             <div className="flex items-center gap-3">
                 <Link to="/signin">
-                    <Button variant="ghost" size="sm" className="text-white/70 hover:text-white">
-                        Sign In
-                    </Button>
-                </Link>
-                <Link to="/signup">
                     <Button size="sm" className="group">
-                        Get Started
+                        Sign In
                         <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
                     </Button>
                 </Link>
@@ -152,9 +143,8 @@ function Hero() {
         <section className="relative min-h-screen flex flex-col items-center justify-center text-center px-6 pt-20 pb-16">
             {/* Decorative blobs */}
             <div className="pointer-events-none absolute inset-0 overflow-hidden">
-                <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-emerald-600/15 rounded-full blur-[140px]" />
-                <div className="absolute bottom-1/4 left-1/4 w-72 h-72 bg-teal-700/10 rounded-full blur-[100px]" />
-                <div className="absolute top-1/3 right-1/4 w-56 h-56 bg-fuchsia-700/8 rounded-full blur-[90px]" />
+                <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-emerald-600/10 rounded-full blur-[140px]" />
+                <div className="absolute bottom-1/4 left-1/4 w-72 h-72 bg-teal-700/5 rounded-full blur-[100px]" />
             </div>
 
             <motion.div
@@ -197,15 +187,10 @@ function Hero() {
                 animate="show"
                 className="mt-10 flex flex-col sm:flex-row items-center gap-4"
             >
-                <Link to="/signup">
-                    <Button size="lg" className="w-full sm:w-auto group px-8 text-base">
-                        Start for free
-                        <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                    </Button>
-                </Link>
                 <Link to="/signin">
-                    <Button variant="ghost" size="lg" className="w-full sm:w-auto text-white/60 hover:text-white text-base">
-                        Sign in →
+                    <Button size="lg" className="w-full sm:w-auto group px-8 text-base">
+                        Get Started
+                        <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                     </Button>
                 </Link>
             </motion.div>
@@ -216,7 +201,7 @@ function Hero() {
                 variants={fadeUp}
                 initial="hidden"
                 animate="show"
-                className="mt-10 flex items-center gap-6 text-sm text-white/35"
+                className="mt-10 flex items-center gap-6 text-sm text-white/30"
             >
                 {benefits.map(({ icon: Icon, text }) => (
                     <div key={text} className="flex items-center gap-1.5">
@@ -234,7 +219,7 @@ function Hero() {
                 animate="show"
                 className="mt-16 w-full max-w-3xl"
             >
-                <div className="glass-strong rounded-3xl p-5 border border-white/10 glow-emerald-sm overflow-hidden relative">
+                <div className="glass-strong rounded-3xl p-5 border border-white/5 glow-emerald-sm overflow-hidden relative bg-black/40">
                     {/* Mock header */}
                     <div className="flex items-center gap-2 mb-4">
                         <div className="flex gap-1.5">
@@ -247,9 +232,9 @@ function Hero() {
                     {/* Mock cards */}
                     <div className="grid grid-cols-3 gap-3">
                         {[
-                            { tag: "YouTube", c: "from-red-500/15 to-red-600/5", tc: "text-red-400" },
-                            { tag: "Tweet", c: "from-sky-500/15 to-sky-600/5", tc: "text-sky-400" },
-                            { tag: "Link", c: "from-emerald-500/15 to-emerald-600/5", tc: "text-emerald-400" },
+                            { tag: "YouTube", c: "from-red-500/10 to-transparent", tc: "text-red-400" },
+                            { tag: "Tweet", c: "from-sky-500/10 to-transparent", tc: "text-sky-400" },
+                            { tag: "Link", c: "from-emerald-500/10 to-transparent", tc: "text-emerald-400" },
                         ].map(({ tag, c, tc }) => (
                             <div key={tag} className={`rounded-xl p-3 bg-gradient-to-br ${c} border border-white/8`}>
                                 <div className={`text-[10px] font-semibold ${tc} mb-2`}>{tag}</div>
@@ -260,7 +245,7 @@ function Hero() {
                         ))}
                     </div>
                     {/* Shimmer overlay at bottom */}
-                    <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-[#0a0a0f] to-transparent" />
+                    <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-black to-transparent" />
                 </div>
             </motion.div>
 
@@ -289,7 +274,7 @@ function Features() {
                     <motion.h2 variants={fadeUp} custom={1} className="text-4xl sm:text-5xl font-bold text-white">
                         Save any type of content
                     </motion.h2>
-                    <motion.p variants={fadeUp} custom={2} className="mt-4 text-white/45 text-lg max-w-xl mx-auto">
+                    <motion.p variants={fadeUp} custom={2} className="mt-4 text-white/40 text-lg max-w-xl mx-auto">
                         From YouTube to tweets to docs — Second Brain handles it all.
                     </motion.p>
                 </InView>
@@ -306,7 +291,7 @@ function Features() {
                                     <Icon className={`w-5 h-5 ${iconColor}`} />
                                 </div>
                                 <h3 className="text-white font-semibold mb-2">{title}</h3>
-                                <p className="text-sm text-white/45 leading-relaxed">{desc}</p>
+                                <p className="text-sm text-white/40 leading-relaxed">{desc}</p>
                             </motion.div>
                         </InView>
                     ))}
@@ -320,7 +305,7 @@ function Features() {
 function HowItWorks() {
     return (
         <section className="py-24 px-6 relative overflow-hidden">
-            <div className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[500px] bg-emerald-800/8 rounded-full blur-[150px]" />
+            <div className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[500px] bg-emerald-800/10 rounded-full blur-[150px]" />
             <div className="max-w-5xl mx-auto">
                 <InView className="text-center mb-16">
                     <motion.div variants={fadeUp} custom={0} className="badge-emerald mb-4 inline-flex items-center gap-1.5">
@@ -329,7 +314,7 @@ function HowItWorks() {
                     <motion.h2 variants={fadeUp} custom={1} className="text-4xl sm:text-5xl font-bold text-white">
                         How it works
                     </motion.h2>
-                    <motion.p variants={fadeUp} custom={2} className="mt-4 text-white/45 text-lg max-w-lg mx-auto">
+                    <motion.p variants={fadeUp} custom={2} className="mt-4 text-white/40 text-lg max-w-lg mx-auto">
                         Get started in minutes and build your second brain in no time.
                     </motion.p>
                 </InView>
@@ -340,16 +325,16 @@ function HowItWorks() {
                             <motion.div
                                 variants={fadeUp}
                                 custom={i * 0.1}
-                                className="glass-strong rounded-2xl p-7 border border-white/10 card-hover relative overflow-hidden"
+                                className="glass-strong rounded-2xl p-7 border border-white/10 card-hover relative overflow-hidden bg-white/2"
                             >
-                                <span className="absolute top-4 right-5 text-4xl font-black text-emerald-500/10 select-none font-mono">
+                                <span className="absolute top-4 right-5 text-4xl font-black text-emerald-500/5 select-none font-mono">
                                     {num}
                                 </span>
                                 <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-emerald-500/30 to-teal-700/20 border border-emerald-500/30 flex items-center justify-center mb-4">
                                     <span className="text-xs font-bold text-emerald-300">{num}</span>
                                 </div>
                                 <h3 className="text-white font-semibold text-lg mb-2">{title}</h3>
-                                <p className="text-sm text-white/45 leading-relaxed">{desc}</p>
+                                <p className="text-sm text-white/40 leading-relaxed">{desc}</p>
                             </motion.div>
                         </InView>
                     ))}
@@ -367,7 +352,7 @@ function CTA() {
                 <motion.div
                     variants={fadeUp}
                     custom={0}
-                    className="glass-strong rounded-3xl p-12 border border-white/10 text-center relative overflow-hidden glow-emerald-sm"
+                    className="glass-strong rounded-3xl p-12 border border-white/10 text-center relative overflow-hidden glow-emerald-sm bg-black/50"
                 >
                     <div className="pointer-events-none absolute inset-0 rounded-3xl bg-gradient-to-br from-emerald-600/10 to-teal-800/5" />
                     <div className="w-16 h-16 rounded-3xl flex items-center justify-center mx-auto mb-6">
@@ -376,24 +361,19 @@ function CTA() {
                     <motion.h2 variants={fadeUp} custom={1} className="text-4xl font-bold gradient-text-white mb-4">
                         Start building your<br />second brain today
                     </motion.h2>
-                    <motion.p variants={fadeUp} custom={2} className="text-white/45 mb-8 max-w-md mx-auto">
-                        Free forever. No credit card needed. Join hundreds of people who never lose a good idea again.
+                    <motion.p variants={fadeUp} custom={2} className="text-white/40 mb-8 max-w-md mx-auto">
+                        Securely store and organize your digital world. Your personal hub for everything that matters.
                     </motion.p>
                     <motion.div variants={fadeUp} custom={3} className="flex flex-col sm:flex-row items-center justify-center gap-3">
-                        <Link to="/signup">
+                        <Link to="/signin">
                             <Button size="lg" className="w-full sm:w-auto group px-10 text-base">
-                                Create free account
+                                Access Admin Dashboard
                                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                             </Button>
                         </Link>
-                        <Link to="/signin">
-                            <Button variant="ghost" size="lg" className="w-full sm:w-auto text-white/50 hover:text-white text-base">
-                                Sign in instead
-                            </Button>
-                        </Link>
                     </motion.div>
-                    <motion.div variants={fadeUp} custom={4} className="mt-8 flex items-center justify-center gap-5 text-xs text-white/25">
-                        {["Free forever", "No credit card", "Cancel anytime"].map((t) => (
+                    <motion.div variants={fadeUp} custom={4} className="mt-8 flex items-center justify-center gap-5 text-xs text-white/20">
+                        {["Admin access only", "Secure login", "Private storage"].map((t) => (
                             <span key={t} className="flex items-center gap-1">
                                 <Check className="w-3 h-3 text-emerald-400" /> {t}
                             </span>
@@ -408,7 +388,7 @@ function CTA() {
 // ─── Footer ───────────────────────────────────────────────────────────────────
 function Footer() {
     return (
-        <footer className="border-t border-white/6 py-8 px-6">
+        <footer className="border-t border-white/5 py-8 px-6 bg-black/20">
             <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
                 <div className="flex items-center gap-2">
                     <div className="w-7 h-7 rounded-lg flex items-center justify-center">
@@ -416,12 +396,11 @@ function Footer() {
                     </div>
                     <span className="text-sm font-semibold gradient-text">Second Brain</span>
                 </div>
-                <p className="text-xs text-white/25">
+                <p className="text-xs text-white/20">
                     Built with ♥ — your personal knowledge hub
                 </p>
                 <div className="flex items-center gap-4 text-xs text-white/30">
-                    <Link to="/signin" className="hover:text-white/60 transition-colors">Sign in</Link>
-                    <Link to="/signup" className="hover:text-white/60 transition-colors">Sign up</Link>
+                    <Link to="/signin" className="hover:text-emerald-400 transition-colors">Admin Login</Link>
                 </div>
             </div>
         </footer>
@@ -430,19 +409,14 @@ function Footer() {
 
 // ─── Page ─────────────────────────────────────────────────────────────────────
 export function LandingPage() {
-    useEffect(() => {
-        const token = localStorage.getItem("token");
-        // If already logged in, we let them navigate manually; don't auto-redirect
-    }, []);
-
     return (
-        <ShaderBackground>
+        <div className="min-h-screen bg-black">
             <LandingNav />
             <Hero />
             <Features />
             <HowItWorks />
             <CTA />
             <Footer />
-        </ShaderBackground>
+        </div>
     );
 }
